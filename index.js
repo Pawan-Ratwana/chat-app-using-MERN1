@@ -1,13 +1,21 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8000;
-const db = require('./config/mongoose')
+const db = require('./config/mongoose');
+// const User = require('./models/User');
+const userRoute = require("./routes/userRoutes")
+require('dotenv').config();
+
+app.use(express.json());
+
+app.use("/", require('./routes'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
-
-app.get("/", (req, res) => {
-    res.send("Jai shree ram")
-})
+// app.get("/", (req, res) => {
+//     res.send("Jai shree ram")
+// })
 
 
 // Start the server and listen for incoming connections on the specified port
